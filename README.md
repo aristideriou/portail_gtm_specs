@@ -59,30 +59,31 @@ All previous hardcoded Google Analytics / Tag Manager snippets that may exist sh
 
 <img src="https://i.ibb.co/t4BGsns/Capture-d-cran-2021-01-22-102328.png" alt="Incorp" width="600"/>
 
-For each Incorp step, user infos validated in the previous step should be displayed :
+When an incorp step X is validated, user infos validated in the step should be populated in the data layer :
 
 ```javascript
 dataLayer.push({
-    'event' : 'incorpStep',
-    'incorpStepName' : 'Activité', //Step name, identical to what is displayed on page : 'Déclarant', 'Activité', 'Adresse', 'Règlement', 'Finalisation'
-    'incorpUserInfos' : { //User infos displayed in the previous step that was validated
+    'event' : 'incorpStepValidation',
+    'incorpStepName' : 'Activité', //Step name that was validated, identical to what is displayed on page : 'Déclarant', 'Activité', 'Adresse', 'Règlement', 'Finalisation'
+    'incorpUserInfos' : { //User infos displayed in the step that was validated
 
-        //Note there is no info on the 'Déclarant' step as it's the 1st one, but don't forger to populate 'incorpStepName' key
-
-        //Infos from step 1 to display when step 2 is loaded
+        //Info when step 1 "Déclarant" is validated, before step 2 load
         'gender' : 'male', //'male' or 'female'
         'birthCountry' : 'Abroad', //'Abroad' or 'France'  
         'birthYear' : 1988, //AAAA format
         'nationality' : 'France', //Self explanatory
 
-        //Infos from step 2 to display when step 3 is loaded
+        //Info when step 2 "Activité" is validated, before step 3 load
         'activityStartDate' : '20210101', //Company start date, YYYYMMDD format
-        'activityField' : 'Cours et formation | Cours à domicile', //Concatenates "Domaine d'activité" and "Activité souhaitée" fields
+        'activityField' : {
+          'activityDomain':'Cours et formation', //"Domaine d'activité" field
+          'activityWish':'Cours à domicile' //"Domaine souhaité" field 
+          },
 
-        //Infos from step 3 to display when step 4 is loaded
+        //Info when step 3 "Adresse" is validated, before step 4 load
         'city' : 'RENNES (35000)', //City and post code as displayed on the page
 
-        //Infos from step 4 to display when step 5 is loaded
+        //Info when step 4 "Règlement" is validated, before step 5 load
         'transactionAmount' : 59 //Transaction amount in €        
     }
 })
