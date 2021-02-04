@@ -63,25 +63,27 @@ When an incorp step X is validated, user infos validated in the step should be p
 
 ```javascript
 dataLayer.push({
-    'event' : 'incorpStepValidation',
+    'event' : 'incorpStep',
     'incorpStepName' : 'Activité', //Step name that was validated, identical to what is displayed on page : 'Déclarant', 'Activité', 'Adresse', 'Règlement', 'Finalisation'
+    'incorpStepNumber' : 2, //Self explanatory
     'incorpUserInfos' : { //User infos displayed in the step that was validated
 
         //Info when step 1 "Déclarant" is validated, before step 2 load
-        'gender' : 'male', //'male' or 'female'
+        'gender' : 'M', //'M' or 'F'
         'birthCountry' : 'Abroad', //'Abroad' or 'France'  
         'birthYear' : 1988, //AAAA format
-        'nationality' : 'France', //Self explanatory
+        'nationality' : 'FRANCAISE - FRANCE', //Self explanatory
 
         //Info when step 2 "Activité" is validated, before step 3 load
         'activityStartDate' : '20210101', //Company start date, YYYYMMDD format
-        'activityField' : {
-          'activityDomain':'Cours et formation', //"Domaine d'activité" field
-          'activityWish':'Cours à domicile' //"Domaine souhaité" field 
-          },
+        'activityDomain' : 'Cours et formation', //"Domaine d'activité" field
+        'activityDescription' : 770, //To be confirmed by Solen
+        'activityCategory':'Y',//To be confirmed by Solen 
 
         //Info when step 3 "Adresse" is validated, before step 4 load
         'city' : 'RENNES (35000)', //City and post code as displayed on the page
+        'zipcode': '35000', //City Zipcode
+        'cityzip' : 'RENNES (35000)', //Same as displayed on the site
 
         //Info when step 4 "Règlement" is validated, before step 5 load
         'transactionAmount' : 59 //Transaction amount in €        
@@ -95,12 +97,12 @@ Each time an 'actualite' or 'academie' content, **article or category page** is 
 
 ```javascript
 dataLayer.push({
-    'event' : 'editoContentLoad',
-    'editoType' : 'article', //'article' or 'category'
-    'editoBreadcrumb' : ['Académie','Gérer son auto-entreprise','Modifier son auto-entreprise','L\'ajout d\'activité en auto-entreprise'],
+    'event' : 'kbContentLoad',
+    'contentType' : 'article', //'article' or 'category'
+    'contentBreadcrumbs' : ['Académie','Gérer son auto-entreprise','Modifier son auto-entreprise','L\'ajout d\'activité en auto-entreprise'],
     //All category, sub category, etc... items displayed in the same order as on the page
     'editoChars' : 4321, //Number of characters in the article, in the case of 'article' only
-    'editoPublishDate' : '1611052308', //Unix Timestamp for the article publication date, in the case of 'article' only
+    'editoPublishDate' : '2019-08-26', //YYYY-MM-DD date for the article publication date, in the case of 'article' only
 })
 ```
 
@@ -108,12 +110,12 @@ dataLayer.push({
 
 ## Users rating block
 
-Users rating block should be marked up the following way with a ```tms-article-footer-block``` attribute  :
+Users rating block should be marked up the following way with a ```data-tms-article-footer-block``` attribute  :
 
 ![User rating block](https://i.ibb.co/CwHD48S/Sans-titre.png)
 
 ```html
-<footer class="rating-footer text-center w80 mauto" tms-article-footer-block="yes">
+<footer class="rating-footer text-center w80 mauto" data-tms-article-footer-block="yes">
 ```
 
 ## Newsletter side block
@@ -126,12 +128,12 @@ Missing HTML markup
 
 ## Auto entreprise creation block
 
-"Je créé mon auto entreprise" call to action in the sticky block at the bottom of articles should be marked up the following way with a ```tms-auto-entr-bottom-block``` attribute  :
+"Je créé mon auto entreprise" call to action in the sticky block at the bottom of articles should be marked up the following way with a ```data-tms-auto-entr-bottom-block``` attribute  :
 
 !["Je créé mon auto entreprise" sticky block](https://i.ibb.co/cvJMFDQ/Capture-d-cran-2021-01-22-095232.png)
 
 ```html
-<a href="/devenir-auto-entrepreneur" class="" tms-auto-entr-bottom-block="yes">JE CRÉE MON AUTO-ENTREPRISE</a>
+<a href="/devenir-auto-entrepreneur" class="" data-tms-auto-entr-bottom-block="yes">JE CRÉE MON AUTO-ENTREPRISE</a>
 ```
 
 # User login
