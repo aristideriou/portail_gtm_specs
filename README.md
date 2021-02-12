@@ -148,6 +148,17 @@ dataLayer.push({
 })
 ```
 
+# Change in payment method
+
+Each time there is an update in the payment method (formerly dealt through a hardcoded GA event)
+
+```javascript
+dataLayer.push({
+    'event' : 'subscriptionUpdate',
+    'subscriptionUpdate' : 'cessation' //'cessation' or 'modification'
+})
+```
+
 # Deployment notes
 
 These specs should be first deployed on a staging environment, and only in production in sync with Google Tag Manager publication managed by SouthWatts
