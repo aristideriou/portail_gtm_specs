@@ -106,6 +106,39 @@ dataLayer.push({
 })
 ```
 
+# Pop in (blockers) for logged in space
+
+When a popin (blocker) appears, or is closed by the user, in the logged in app :
+
+```javascript
+dataLayer.push({
+  'event' : 'loggedInSpacePopin',
+  'popInAction' : 'appear', //'appear', 'close'
+  'popInPlan' : 'Reactivation' //plan chosen by the user
+})
+```
+
+# Unsubscription
+
+When the user confirms subscription cancel : 
+
+```javascript
+dataLayer.push({
+  'event' : 'subscriptionCancel'
+})
+```
+
+## Payment for logiciel facturation
+
+When the payment has been validated (callback received from Sripe and confirmation message displayed) :
+
+```javascript
+dataLayer.push({
+  'event' : 'facturationPayment',
+  'facturationPaymentType' : 'credit card imprint' //'credit card imprint' or 'payment'
+})
+```
+
 # Editorial content HTML markup
 
 ## Users rating block
@@ -154,10 +187,18 @@ Each time there is an update in the payment method (formerly dealt through a har
 
 ```javascript
 dataLayer.push({
-    'event' : 'subscriptionUpdate',
-    'subscriptionUpdate' : 'cessation' //'cessation' or 'modification'
+    'event' : 'purchase',
+    'purchaseType' : 'cessation' //'cessation' or 'modification'
 })
 ```
+
+# UTM tagging for renewal of payment method
+
+Append the following UTM parameters to the links inside the email for payment method renewal 
+
+https://www.portail-autoentrepreneur.fr/?utm_source=emailing_renewal&utm_medium=email
+
+(See if necessary to make the distinction between the different CTAs, through a utm_content parameter different for each button)
 
 # Deployment notes
 
