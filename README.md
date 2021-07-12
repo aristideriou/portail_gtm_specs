@@ -91,6 +91,26 @@ dataLayer.push({
 })
 ```
 
+# Cessation funnel steps
+
+```javascript
+dataLayer.push({
+    'event' : 'cessaStep',
+    'cessaStepName' : 'Nouvelle adresse' , //'Nouvelle adresse', 'Informations complémentaires', 'Finalisation' dedending on the step loaded
+    'cessaStepID' : 1 //1, 2, 3...
+    })
+```
+
+# Modification funnel steps
+
+```javascript
+dataLayer.push({
+    'event' : 'modifStep',
+    'cessaStepName' : 'Nouvelle adresse' , //'Nouvelle adresse', 'Informations complémentaires', 'Finalisation' dedending on the step loaded
+    'cessaStepID' : 1 //1, 2, 3...
+    })
+```
+
 # Editorial content loading
 
 Each time an 'actualite' or 'academie' content, **article or category page** is loaded : 
